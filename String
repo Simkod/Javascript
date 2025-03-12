@@ -10,12 +10,9 @@ process.stdin.on('data', inputStdin => {
     inputString += inputStdin;
 });
 
-process.stdin.on('end', _ => {
-    inputString = inputString.trim().split('\n').map(string => {
-        return string.trim();
-    });
-    
-    main();    
+process.stdin.on('end', () => {
+    inputString = inputString.trim().split('\n');
+    main();
 });
 
 function readLine() {
@@ -23,54 +20,24 @@ function readLine() {
 }
 
 function getLetter(s) {
-    let letter;
-    // Write your code here
-    
-    switch (s[0]) {
-        case 'a':
-        case 'e':
-        case 'i':
-        case 'o':
-        case 'u':
-            letter = "A";
-            break;
-        case 'b':
-        case 'c':
-        case 'd':
-        case 'f':
-        case 'g':
-            letter = "B";
-            break;
-        case 'h':
-        case 'j':
-        case 'k':
-        case 'l':
-        case 'm':
-            letter = "C";
-            break;
-        case 'n':
-        case 'p':
-        case 'q':
-        case 'r':
-        case 's':
-        case 't':
-        case 'v':
-        case 'w':
-        case 'x':
-        case 'y':
-        case 'z':
-            letter = "D";
-            break;
-        default:
-            return;
-    }
-    
-    return letter;
-}
+    const firstChar = s[0].toLowerCase(); // Ensure case-insensitivity
+    const groups = {
+        A: new Set(['a', 'e', 'i', 'o', 'u']),
+        B: new Set(['b', 'c', 'd', 'f', 'g']),
+        C: new Set(['h', 'j', 'k', 'l', 'm']),
+        D: new Set(['n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z'])
+    };
 
+    for (const [letter, group] of Object.entries(groups)) {
+        if (group.has(firstChar)) {
+            return letter;
+        }
+    }
+
+    return; // Return undefined for invalid inputs
+}
 
 function main() {
     const s = readLine();
-    
     console.log(getLetter(s));
 }
