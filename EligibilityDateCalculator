@@ -1,0 +1,21 @@
+// Count dates based on workdays
+// Eligibility date calculator
+
+const addWeekDays = (startDate, count) =>
+    Array.from({ length: count }).reduce((date) => {
+      date = new Date(date.setDate(date.getDate() + 1));
+      if (date.getDay() % 6 === 0)
+        date = new Date(date.setDate(date.getDate() + (date.getDay() / 6 + 1)));
+      return date;
+    }, startDate);
+
+console.log('Date Calculator');
+
+//Input startdate
+const startDate = new Date("2025-02-01");
+//Input eligibility (working) days
+const eligibilityDays = 400;
+//Calculate eligibility date
+const eligibilityDate = addWeekDays(startDate, eligibilityDays);
+//Print Eligibility date
+console.log(eligibilityDate);
