@@ -1,0 +1,66 @@
+'use strict';
+
+process.stdin.resume();
+process.stdin.setEncoding('utf-8');
+
+let inputString = '';
+let currentLine = 0;
+
+process.stdin.on('data', inputStdin => {
+    inputString += inputStdin;
+});
+
+process.stdin.on('end', _ => {
+    inputString = inputString.trim().split('\n').map(string => {
+        return string.trim();
+    });
+    
+    main();    
+});
+
+function readLine() {
+    return inputString[currentLine++];
+}
+
+/*
+ * Complete the isPositive function.
+ * If 'a' is positive, return "YES".
+ * If 'a' is 0, throw an Error with the message "Zero Error"
+ * If 'a' is negative, throw an Error with the message "Negative Error"
+ */
+function isPositive(a) {
+    //The Math.sign() method retuns whether a number is negative, positive or zero.
+
+    //If the number is positive, this method returns 1.
+    //If the number is negative, it returns -1.
+    //If the number is zero, it returns 0.
+    
+    const sign = Math.sign(a);
+    
+    switch(sign){
+        case 0:
+            throw Error("Zero Error");
+        case 1: //a is positive
+            return "YES";
+        case -1: // a is negative
+            throw Error("Negative Error");
+        
+    }
+}
+    
+
+
+
+function main() {
+    const n = +(readLine());
+    
+    for (let i = 0; i < n; i++) {
+        const a = +(readLine());
+      
+        try {
+            console.log(isPositive(a));
+        } catch (e) {
+            console.log(e.message);
+        }
+    }
+}
