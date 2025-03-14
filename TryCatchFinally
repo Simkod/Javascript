@@ -29,27 +29,18 @@ function readLine() {
 function reverseString(s) {
     //in try block: reverse string -> split, reverse, join methods
     let reversedString;
-    let exceptionCaught = false;
-    
     
     try{
         reversedString = s.split("").reverse().join("");
+        console.log(reversedString);
     }
     //catch block: catch exception and print exception msg in new line
     catch (e) {
-        exceptionCaught = true;
         console.log(e.message);
+        console.log(s);
     }
-    finally{
-        if (exceptionCaught){
-            console.log(s);
-        }
-        else{
-            console.log(reversedString);
-        }
-    }
-    //print (reversed) s in new line if no exception was thrown. Print original s if exception was thrown.
     
+    return reversedString;
 }
 
 
