@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Button</title>
+    </head>
+    <body>
+        <button id="btn"></button>
+        <script>
+            var buttonIndex = 0;
+            var daButton = document.getElementById('btn');
+            daButton.innerHTML = buttonIndex;
+
+            daButton.onclick = function() {
+                buttonIndex++;
+                daButton.innerHTML = buttonIndex;}
+        </script>
+    </body>
+</html>
